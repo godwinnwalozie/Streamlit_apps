@@ -106,7 +106,7 @@ if __name__ == "__main__":
     
    
     st.write(' ### **Thank you for visiting my Machine Learning WebApp**')
-    st.write('###### Scikit-learn is a free software tool, designed to interoperate with the Python numerical and scientific libraries NumPy and SciPy.')
+    st.write('###### Scikit-learn is a free software tool, designed to interprete Python numerical and scientific libraries NumPy and SciPy.')
     st.markdown("""
         Estimator used is **RandomForestClassifier** \
             to predict the **price class range** based on features . I hope you will appreciate my work
