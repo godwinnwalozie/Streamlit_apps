@@ -136,7 +136,4 @@ if __name__ == "__main__":
 
 
     main()
-    
-    with col1:
-        image = Image.open('C:/Users/godwi/Pictures/deep_learning.jpg') 
-        st.image(image)
+ 
