@@ -29,7 +29,7 @@ def phone_price (input_data):
 
 
     if prediction [0] == 0:
-        return "The price is in the LOW CLASS RANGE ! "
+        return "The price is in the LOW CLASS RANGE ! ".center()
     elif prediction[0]  == 1:
         return "The price is in the MID CLASS RANGE!"
     elif prediction[0] == 2:
@@ -87,53 +87,43 @@ def main():
 
     # creating a button for prediction
     
-    with col2:
-        if st.sidebar.button("Predict Price Class"):
+    
+    if st.sidebar.button("Predict Price Class"):
             prediction = phone_price([battery_power,four_g,ram,screen_height,screen_width,	three_g	,
             Rear_camera,front_camera,pixel_width,pixel_height])
             st.success(prediction)
-        else:
-            st.write('##### Your Prediction will display here !!')
-            
-            
-        image = Image.open('C:/Users/godwi/Pictures/deep_learning.jpg') 
-        st.image(image)
+    else:
+        st.write('##### Your Prediction will display here !!')
 
-
+image = Image.open('C:/Users/godwi/Pictures/deep_learning.jpg') 
+st.image(image)
+   
 
 if __name__ == "__main__":
     
-    
+
    
-    st.write(' ### **Thank you for visiting my Machine Learning WebApp**')
-    st.write('###### Scikit-learn is a free software tool, designed to interprete Python numerical and scientific libraries NumPy and SciPy.')
-    st.markdown("""
-        Estimator used is **RandomForestClassifier** \
+    st.write('  ## **Mobile Phone Price Range Predictor**'.center(50,"*") )
+    
+    st.markdown("""Estimator used is **RandomForestClassifier** \
             to predict the **price class range** based on features . I hope you will appreciate my work
         """)
       
     #displaying the image on streamlit app
-    col1, col2 = st.columns(2)
-
-    with col1:
+    
+   
         #opening the image
-        image = Image.open('C:/Users/godwi/Pictures/mazi6.JPG')
-        st.image(image, caption=' ',width=300, use_column_width=258)
-        st.markdown('Designed on Streamlit **_isn''t it_really cool !**')
+    image = Image.open("C:/Users/godwi/GitHub/Streamlit_apps/Deployed_ML_Phone_Prices/mobilephoneimage.jpg")
+    st.image(image, caption=' ',width=540, use_column_width=278)
+    st.markdown('Designed on Streamlit **_isn''t it_really cool !**')
         
         
         
 
-    with col2:
+
     # streamlit preparation
-        image = Image.open('C:/Users/godwi/Pictures/sklearn.png')
-        st.image(image, caption='',width=120, use_column_width=120)
+    
         
-
         
-
-         
-
-
     main()
  
