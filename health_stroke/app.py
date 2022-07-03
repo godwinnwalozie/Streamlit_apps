@@ -8,10 +8,6 @@ from PIL import Image
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 
-sns.set_theme(font_scale=0.7, style="darkgrid")
-
-master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
-
 
 st.set_page_config(layout="wide")
 m = st.markdown("""
@@ -26,6 +22,9 @@ div.stButton > button:hover {
     }
 </style>""", unsafe_allow_html=True)
 
+sns.set_theme(font_scale=0.7, style="darkgrid")
+
+master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
 def main():
     #-------------------------------Sisdebar-----------------------
@@ -48,13 +47,14 @@ def main():
     bmi = st.sidebar.number_input('Enter your current BMI', min_value= 0, max_value= 100)              
     smoking_status = st.sidebar.selectbox('Smoking status ?',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
     st.sidebar.markdown("***")
-    age = round(age,2)
+   
 
 
 
     #st.title('Stroke Disease Prediction with Machine Learning')
-    st.markdown("<h1 style='text-align: left; color: grey;'>Stroke Disease Prediction with Machine Learning</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: left; color: grey;'>Stroke Disease Prediction with Machine Learning</h2>", unsafe_allow_html=True)
     st.write(" **By Godwin Nwalozie : July 2022** ")
+    st.markdown("***")
     image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
     st.image(image)
 
@@ -82,11 +82,12 @@ def main():
         features = {"gender": gender,"age":age,"hypertension": hypertension, "heart_disease":heart_disease, "work_type" : work_type,"Residence_type" : Residence_type,
                 "avg_glucose_level" : avg_glucose_level, "bmi" : bmi,"smoking_status": smoking_status }
         show = pd.DataFrame(features, index= [0])
+        show.age= show.age.astype('int')
         upper  = [i.upper() for i in show]
         show.columns = upper
 
         #st.markdown("***")
-        
+        st.markdown("***")
 
         row_count = len(master_df)
         col_count_ini = len(master_df.columns)
