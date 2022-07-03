@@ -7,7 +7,6 @@ import pickle
 from PIL import Image
 from imblearn.over_sampling import SMOTE
 
-
 sns.set_theme(font_scale=0.7, style="darkgrid")
 master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
