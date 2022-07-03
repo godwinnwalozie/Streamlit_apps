@@ -13,9 +13,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import make_column_transformer
 sns.set_theme(font_scale=0.7, style="darkgrid")
-import squarify
-
-
+master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
 
 st.set_page_config(layout="wide")
@@ -33,15 +31,15 @@ div.stButton > button:hover {
 
 
 
-
+#-------------------------------Sisdebar-----------------------
 #with st.sidebar.container():
-    #image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png")
+    #image = Image.open( )
     #st.image(image)
 st.sidebar.title(' Select Features')
 
 
 # getting data from user
-st.sidebar.image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
+#st.sidebar.image = Image.open("") 
 
 gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
 age = st.sidebar.number_input('Input Age (min is 25, max is 100)', key = 'int',max_value  =100,min_value = 25) #st.sidebar.slider('Age',0,50,100)         
@@ -49,8 +47,8 @@ hypertension = st.sidebar.selectbox('Are you hpertensive? 0 = No : 1= Yes',(1, 0
 heart_disease = st.sidebar.selectbox('Any heart related disease ? 0 = No 1= Yes',(1, 0))                     
 work_type = st.sidebar.selectbox('Work type ?', ("Private" ,"Self-employed","Children","Govt_job ","Never_worked"))             
 Residence_type = st.sidebar.selectbox('Residence Type ?', ("Urban","Rural"))             
-avg_glucose_level= st.sidebar.number_input('Average Gloucose Level' )          
-bmi = st.sidebar.number_input('Enter your current BMI')              
+avg_glucose_level= st.sidebar.number_input('Average Gloucose Level', min_value= 0 )          
+bmi = st.sidebar.number_input('Enter your current BMI', min_value= 0, max_value= 100)              
 smoking_status = st.sidebar.selectbox('Smoking status ?',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
 st.sidebar.markdown("***")
 age = round(age,2)
@@ -59,7 +57,7 @@ age = round(age,2)
 
 #st.title('Stroke Disease Prediction with Machine Learning')
 st.markdown("<h1 style='text-align: left; color: grey;'>Stroke Disease Prediction with Machine Learning</h1>", unsafe_allow_html=True)
-st.write(" **By Godwin Chinonye : July 2022** ")
+st.write(" **By Godwin Nwalozie : July 2022** ")
 image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
 st.image(image)
 
@@ -92,7 +90,7 @@ with st.container():
 
     #st.markdown("***")
     
-    master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+
     row_count = len(master_df)
     col_count_ini = len(master_df.columns)
     col_count = len(master_df.columns)-3
@@ -108,7 +106,7 @@ with st.container():
  
 
     
-    st.error (' ###### **Your Selected Features**')
+    st.info (' ###### **Your Selected Features**')
     st.table(show)
 
 
@@ -142,7 +140,6 @@ else:
 st.markdown("***")
 
   
-  
 
 with st.container():
     st.markdown("<h5 style='text-align:left; color: black;'>Preprocessed Data Correlation & Confusion Matrix </h4>", unsafe_allow_html=True)
@@ -175,7 +172,7 @@ with st.container():
          
         
         # chart for feature correlation
-        master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+      
         fig,ax =plt.subplots(figsize = (6,3.4))
         feature_check =sns.heatmap(master_df.corr(), cmap = "Greens", annot = True,linewidths=0.2, linecolor='grey');
         ax.set(title ="Feature Correlation")
