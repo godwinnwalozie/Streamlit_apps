@@ -6,6 +6,7 @@ import seaborn as sns
 import pickle
 from PIL import Image
 from imblearn.over_sampling import SMOTE
+from sklearn.preprocessing import LabelEncoder
 
 sns.set_theme(font_scale=0.7, style="darkgrid")
 master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
@@ -109,7 +110,7 @@ def main():
     inputed = pd.DataFrame(data = features, index = [0])
 
     stroke_model = pickle.load(open('C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/estimator_pkl', 'rb'))      
-    from sklearn.preprocessing import LabelEncoder
+    
     le = LabelEncoder()
     inputed.gender =le.fit_transform(inputed.gender)
     inputed.work_type =le.fit_transform(inputed.work_type)
