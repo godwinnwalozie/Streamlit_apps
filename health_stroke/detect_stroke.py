@@ -1,17 +1,14 @@
-from cgitb import small
-from os import X_OK
 import streamlit as st
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
-from joblib import dump, load
 import pickle
-import  joblib
 from PIL import Image
 from imblearn.over_sampling import SMOTE
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import make_column_transformer
+
+
+
 sns.set_theme(font_scale=0.7, style="darkgrid")
 master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
