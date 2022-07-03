@@ -95,7 +95,7 @@ with st.container():
     
     col1, col2, col3,col4,col5 = st.columns(5)
     col1.metric("Estimator","RFClassifier", "+")
-    col2.metric("Model Prediction Accuracy", "93%", "-")
+    col2.metric("Model Prediction Accuracy", "93%", "<>")
     col3.metric("Number of rows trained", row_count, "<>")
     col4.metric("Initial No of columns", col_count_ini, "<>")
     col5.metric("No of columns trained", col_count, "<>")
