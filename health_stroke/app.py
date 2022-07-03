@@ -138,7 +138,15 @@ def main():
 
     
 
-    with st.container():
+    
+
+if __name__ == "__main__":
+    
+    
+    
+      main()
+      
+with st.container():
         st.markdown("<h5 style='text-align:left; color: black;'>Preprocessed Data Correlation & Confusion Matrix </h4>", unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         
@@ -186,16 +194,10 @@ def main():
             st.write(fig)
 
 
-    st.write(' Thank you for visiting :-) '  )
-    image = Image.open("C:/Users/godwi/Pictures/mazi2.png")
-    st.image(image, width= 130)
-    st.write("**Godwin**")
+        st.write(' Thank you for visiting :-) '  )
+        image = Image.open("C:/Users/godwi/Pictures/mazi2.png")
+        st.image(image, width= 130)
+        st.write("**Godwin**")
 
-    st.write('Visit my page on Kaggle : https://www.kaggle.com/godwinnwalozie/code')
-    st.write('Visit my Github page :https://github.com/godwinnwalozie')
-
-if __name__ == "__main__":
-    
-    
-    
-      main()
+        st.write('Visit my page on Kaggle : https://www.kaggle.com/godwinnwalozie/code')
+        st.write('Visit my Github page :https://github.com/godwinnwalozie')
