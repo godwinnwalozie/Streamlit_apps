@@ -34,40 +34,39 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 
 
 
-def main():
+#def main():
     #-------------------------------Sisdebar-----------------------
     #with st.sidebar.container():
         #image = Image.open( )
         #st.image(image)
-    st.sidebar.title(' Select Features')
+st.sidebar.title(' Select Features')
 
 
     # getting data from user
     #st.sidebar.image = Image.open("") 
-    master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
-    gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
-    age = st.sidebar.number_input('Input Age ', key = 'int',max_value  =100,min_value = 18) #st.sidebar.slider('Age',0,50,100)         
-    hypertension = st.sidebar.selectbox('Are you hpertensive? ',("Yes", "No"))          
-    heart_disease = st.sidebar.selectbox('Any heart related disease ? ',("Yes", "No"))                      
-    #work_type = st.sidebar.selectbox('Work type ?', ("Private" ,"Self-employed","Children","Govt_job ","Never_worked"))             
-    Residence_type = st.sidebar.selectbox('Residencial Type ', ("Urban","Rural"))             
-    avg_glucose_level= st.sidebar.number_input('Average Gloucose Level', min_value= 0 , max_value=140)          
-    bmi = st.sidebar.number_input('Enter your current BMI', min_value= 0, max_value= 100)              
-    smoking_status = st.sidebar.selectbox('Smoking status',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
-    st.sidebar.markdown("***")
+master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
+age = st.sidebar.number_input('Input Age ', key = 'int',max_value  =100,min_value = 18) #st.sidebar.slider('Age',0,50,100)         
+hypertension = st.sidebar.selectbox('Are you hpertensive? ',("Yes", "No"))          
+heart_disease = st.sidebar.selectbox('Any heart related disease ? ',("Yes", "No"))                      
+#work_type = st.sidebar.selectbox('Work type ?', ("Private" ,"Self-employed","Children","Govt_job ","Never_worked"))             
+Residence_type = st.sidebar.selectbox('Residencial Type ', ("Urban","Rural"))             
+avg_glucose_level= st.sidebar.number_input('Average Gloucose Level', min_value= 0 , max_value=140)          
+bmi = st.sidebar.number_input('Enter your current BMI', min_value= 0, max_value= 100)              
+smoking_status = st.sidebar.selectbox('Smoking status',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
+st.sidebar.markdown("***")
    
 
 
+st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
+st.write(" **By Godwin Nwalozie : July 2022** ")
+st.markdown("***")
+image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
+st.image(image)
 
-    st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
-    st.write(" **By Godwin Nwalozie : July 2022** ")
-    st.markdown("***")
-    image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
-    st.image(image)
 
-
-    with st.container():
-        st.info(" This Machine Learning algorithm tries to predict whether a patient is likely to get stroke based on the feature\
+with st.container():
+    st.info(" This Machine Learning algorithm tries to predict whether a patient is likely to get stroke based on the feature\
                             parameters like gender, age, various diseases, and smoking status. Each row in the \
                             data provides relavant information about the patient.  \n **Data Source** :\
                             ***https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset*** ")
@@ -77,35 +76,35 @@ def main():
     #st.markdown("***")
     
     #st.write ('### Stroke Disease Prediction App')  
-    with st.container():
+with st.container():
     # Store inputs into dataframe
-        features = {"gender": gender,"age":age,"hypertension": hypertension, "heart_disease":heart_disease, "Residence_type" : Residence_type,
+    features = {"gender": gender,"age":age,"hypertension": hypertension, "heart_disease":heart_disease, "Residence_type" : Residence_type,
                 "avg_glucose_level" : avg_glucose_level, "bmi" : bmi,"smoking_status": smoking_status }
-        show = pd.DataFrame(features, index= [0])
-        show.age= show.age.astype('int')
-        upper  = [i.upper() for i in show]
-        show.columns = upper
+    show = pd.DataFrame(features, index= [0])
+    show.age= show.age.astype('int')
+    upper  = [i.upper() for i in show]
+    show.columns = upper
 
         #st.markdown("***")
-        st.markdown("***")
+    st.markdown("***")
 
-        row_count = len(master_df)
-        col_count_ini = len(master_df.columns)
-        col_count = len(master_df.columns)-3
-        st.markdown("<h3 style='text-align: left; color: chocolate;'> Dataset info and Deployed Estimator </h3>", unsafe_allow_html=True)
+    row_count = len(master_df)
+    col_count_ini = len(master_df.columns)
+    col_count = len(master_df.columns)-3
+    st.markdown("<h3 style='text-align: left; color: chocolate;'> Dataset info and Deployed Estimator </h3>", unsafe_allow_html=True)
         
         
-        col1, col2, col3,col4,col5 = st.columns(5)
-        col1.metric("Estimator","RFClassifier", "+")
-        col2.metric("Model Prediction Accuracy", "90%", "<>")
-        col3.metric("Number of rows trained", row_count, "<>")
-        col4.metric("Initial No of columns", col_count_ini, "<>")
-        col5.metric("No of columns trained", col_count, "-")
+    col1, col2, col3,col4,col5 = st.columns(5)
+    col1.metric("Estimator","RFClassifier", "+")
+    col2.metric("Model Prediction Accuracy", "90%", "<>")
+    col3.metric("Number of rows trained", row_count, "<>")
+    col4.metric("Initial No of columns", col_count_ini, "<>")
+    col5.metric("No of columns trained", col_count, "-")
     
 
         
-        st.info (' ###### **Your Selected Features**')
-        st.table(show)
+    st.info (' ###### **Your Selected Features**')
+    st.table(show)
 
 
 
@@ -141,11 +140,11 @@ def main():
 
     
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     
     
     
-      main()
+      #main()
       
 with st.container():
         master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
@@ -183,9 +182,8 @@ with st.container():
             
                 
         with col2:
-            
-            
-            fig,ax =plt.subplots(figsize = (8,5))
+                        
+            fig,ax =plt.subplots(figsize = (10,6))
             feature_check =sns.heatmap(master_df.corr(), cmap = "Greens", annot = True,linewidths=0.3, linecolor='grey');
             ax.set(title ="Feature Correlation")
             st.write(fig)
