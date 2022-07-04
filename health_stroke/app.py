@@ -32,7 +32,7 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 #Import file
 #xlsx_file = st.sidebar.file_uploader('Import .xlsx File', type = 'xlsx') 
 
-master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+
 
 def main():
     #-------------------------------Sisdebar-----------------------
@@ -72,7 +72,7 @@ def main():
                             data provides relavant information about the patient.  \n **Data Source** :\
                             ***https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset*** ")
 
-
+    master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
     
     #st.markdown("***")
     
