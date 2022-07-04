@@ -9,7 +9,6 @@ from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 import os
 
-
 st.set_page_config(layout="wide")
 m = st.markdown("""
 <style>
