@@ -25,8 +25,6 @@ div.stButton > button:hover {
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
 
-
-
 #warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
 #Import file
@@ -44,7 +42,8 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
 st.write(" **By Godwin Nwalozie : July 2022** ")
 st.markdown("***")
-image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.png") 
+
+image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.jpg") 
 st.image(image)
 
 
