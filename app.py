@@ -44,7 +44,7 @@ st.sidebar.title(' Select Features')
 
     # getting data from user
     #st.sidebar.image = Image.open("") 
-master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+master_df= pd.read_csv("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
 gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
 age = st.sidebar.number_input('Input Age ', key = 'int',max_value  =100,min_value = 18) #st.sidebar.slider('Age',0,50,100)         
 hypertension = st.sidebar.selectbox('Are you hpertensive? ',("Yes", "No"))          
@@ -110,7 +110,7 @@ with st.container():
 
     inputed = pd.DataFrame(data = features, index = [0])
 
-    stroke_model = pickle.load(open('C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/estimator_pkl', 'rb'))      
+    stroke_model = pickle.load(open('C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/estimator_pkl', 'rb'))      
     
     le = LabelEncoder()
     inputed.gender =le.fit_transform(inputed.gender)
@@ -147,7 +147,7 @@ with st.container():
       #main()
       
 with st.container():
-        master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+        master_df= pd.read_csv("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
         st.markdown("<h3 style='text-align:left; color: chocolate;'>Exploratory Data Analysis & Confusion Matrix Report</h3>", 
                     unsafe_allow_html=True)
         col1, col2 = st.columns(2)
@@ -170,7 +170,7 @@ with st.container():
             st.write(fig)
             
             # chart for confusion metrix
-            conf_max_df= pd.read_csv ("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/conf_max_df.csv")
+            conf_max_df= pd.read_csv ("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/conf_max_df.csv")
             fig,ax = plt.subplots(figsize = (6,2.4))
             sns.heatmap(conf_max_df/np.sum(conf_max_df) ,xticklabels = True, annot =True,fmt =".2%",
                         ax = ax,linewidths=0.2, linecolor='grey',)
