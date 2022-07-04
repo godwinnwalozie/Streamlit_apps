@@ -29,7 +29,8 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 
 #warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
-df = None # global dataframe; if it is not uploaded, it is None.
+#Import file
+#xlsx_file = st.sidebar.file_uploader('Import .xlsx File', type = 'xlsx') 
 
 master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
