@@ -110,7 +110,7 @@ with st.container():
     
     
     
-    header_image = (path+ "\data\header_image.png")
+    header_image = (path+ "/data/header_image.png")
     image_header = Image.open(header_image)
     st.image(image_header)
     
@@ -131,12 +131,12 @@ st.markdown("")
     #st.write ('### Stroke Disease Prediction App')
 
     # The dataset for the estimator
-dataframe = (path+ "\data\master_df.csv")
+dataframe = (path+ "/data/master_df.csv")
 master_df= pd.read_csv(dataframe)
 
     
     # Store inputs into dataframe
-select_features = (path+ "\data\Select_features.png") 
+select_features = (path+ "/data/Select_features.png") 
 select_features = Image.open(select_features)
 st.sidebar.image(select_features)
 # st.sidebar.write('### Select Features')
@@ -194,7 +194,7 @@ inputed.heart_disease =le.fit_transform(inputed.heart_disease)
 #inputed.bmi = inputed.bmi.apply(lambda x: round(x,2))
      
 
-trained_model = (path+ "\data\estimator_pkl")
+trained_model = (path+ "/data/estimator_pkl")
 stroke_model = pickle.load(open(trained_model, 'rb'))
 
 
@@ -211,7 +211,7 @@ if st.button("click to make prediction"):
     st.write(f" ##### The Prediction is a {prediction} ")
     #st.markdown("***")    
 else:
-    pred_smiley =(path+ "\data\smiley_click.png") 
+    pred_smiley =(path+ "/data/smiley_click.png") 
     pred_smiley = Image.open(pred_smiley)
     st.image(pred_smiley,width= 400)
     #st.write('###### **Prediction display here !!**')
@@ -249,7 +249,7 @@ with st.container():
 
                 # chart for confusion metrix
             
-        confusion = (path+ "\data\conf_max_df.csv") 
+        confusion = (path+ "/data/conf_max_df.csv") 
         conf_max_df= pd.read_csv (confusion)
         
         fig,ax = plt.subplots(figsize = (6,2.4))
