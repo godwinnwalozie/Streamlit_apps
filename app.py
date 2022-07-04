@@ -60,7 +60,7 @@ st.markdown("""
                 .css-a51556 {
                     font-weight: 900;
                     color: ash;
-}         
+            }         
         </style>
         """, unsafe_allow_html=True)
 
@@ -106,12 +106,12 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 
 with st.container():
    
-    header_image = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/top_header_image.png")
+    header_image = os.path.abspath("godwi/GitHub/streamlit_stroke/data/top_header_image.png")
     image_header = Image.open(header_image)
     st.image(image_header)
     
 
-st.write(" **Developed by : Godwin Nwalozie**")
+st.write(" #### **Developed by : Godwin Nwalozie**")
 #st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
 #st.write("#### Godwin Nwalozie July 2022 ")
 #st.markdown("***")
@@ -127,12 +127,12 @@ st.markdown("")
     #st.write ('### Stroke Disease Prediction App')
 
     # The dataset for the estimator
-dataframe = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
+dataframe = os.path.abspath("godwi/GitHub/streamlit_stroke/data/master_df.csv")
 master_df= pd.read_csv(dataframe)
 
     
     # Store inputs into dataframe
-select_features = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/select_features.png")
+select_features = os.path.abspath("godwi/GitHub/streamlit_stroke/data/select_features.png")
 select_features = Image.open(select_features)
 st.sidebar.image(select_features)
 # st.sidebar.write('### Select Features')
@@ -156,7 +156,7 @@ show = pd.DataFrame(features, index= [0])
 show.age= show.age.astype('int')
 upper  = [i.capitalize() for i in show]
 show.columns = upper
-    
+
 row_count = len(master_df)
 col_count_ini = len(master_df.columns)
 col_count = len(master_df.columns)-3
@@ -164,12 +164,14 @@ st.markdown("<h4 style='text-align: left; color: chocolate;'> Details of the tra
 
 with st.container():
     col1, col2, col3,col4,col5 = st.columns(5)
-    col1.metric("Estimator","RFClassifier", "+")
-    col2.metric("Model Prediction Accuracy", "90%", "<>")
-    col3.metric("Number of rows trained", row_count, "<>")
-    col4.metric("Initial No of columns", col_count_ini, "<>")
-    col5.metric("No of columns trained", col_count, "-")
-st.markdown("***")
+    col1.metric("Number of rows trained", row_count, "<>")
+    col2.metric("Initial No of columns", col_count_ini, "<>")
+    col3.metric("No of columns trained", col_count, "-")
+    col4.metric("Estimator","RFClassifier", "+")
+    col5.metric("Model Prediction Accuracy", "90%", "<>")
+    
+    
+#st.markdown("***")
 
 with st.container():
     
@@ -185,33 +187,35 @@ inputed.Residence_type =le.fit_transform(inputed.Residence_type)
 inputed.smoking_status =le.fit_transform(inputed.smoking_status)
 inputed.hypertension =le.fit_transform(inputed.hypertension)
 inputed.heart_disease =le.fit_transform(inputed.heart_disease)
-inputed.bmi = inputed.bmi.apply(lambda x: round(x,2))
+#inputed.bmi = inputed.bmi.apply(lambda x: round(x,2))
      
 
-trained_model = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/estimator_pkl")
+trained_model = os.path.abspath("godwi/GitHub/streamlit_stroke/data/estimator_pkl")
 stroke_model = pickle.load(open(trained_model, 'rb'))
-         
+
+
 prediction = stroke_model.predict(inputed)
 if prediction [0] == 0:
-    prediction =  "Low Risk" 
+    prediction =  "Class [0] Low Risk" 
         #st.balloons()
 else:
-    prediction = "High Risk"
+    prediction = "Class [1] Low Risk" 
     
 if st.button("click to make prediction"):
-             
+           
     # Output prediction
-    st.success(f"Prediction is {prediction} ")
+    st.write(f" ##### The Prediction is a {prediction} ")
+    #st.markdown("***")    
 else:
-    pred_smiley = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/botton_click.png")
+    pred_smiley = os.path.abspath("godwi/GitHub/streamlit_stroke/data/botton_click.png")
     pred_smiley = Image.open(pred_smiley)
     st.image(pred_smiley,width= 400)
     #st.write('###### **Prediction display here !!**')
+    
+    
 
 st.markdown("***")
-
 #if __name__ == "__main__":
-
       #main()
 
 with st.container():
@@ -241,7 +245,7 @@ with st.container():
 
                 # chart for confusion metrix
             
-        confusion = os.path.abspath("GitHub/streamlit_app_stroke_precdict/data/conf_max_df.csv")
+        confusion = os.path.abspath("godwi/GitHub/streamlit_stroke/data/conf_max_df.csv")
         conf_max_df= pd.read_csv (confusion)
         
         fig,ax = plt.subplots(figsize = (6,2.4))
@@ -303,10 +307,10 @@ with st.container():
 
 with st.container():
 
-    st.write(' Thank you for visiting :-) '  )
-    image = Image.open("C:/Users/godwi/Pictures/mazi2.png")
-    st.image(image, width= 190)
-    st.write("**Godwin Nwalozie **")
-    st.text("“𝑾𝒊𝒕𝒉𝒐𝒖𝒕 𝒅𝒂𝒕𝒂 𝒚𝒐𝒖’𝒓𝒆 𝒋𝒖𝒔𝒕 𝒂𝒏𝒐𝒕𝒉𝒆𝒓 𝒑𝒆𝒓𝒔𝒐𝒏 𝒘𝒊𝒕𝒉 𝒂𝒏 𝒐𝒑𝒊𝒏𝒊𝒐𝒏.” 𝑬𝒅𝒘𝒂𝒓𝒅𝒔 𝑫𝒆𝒎𝒊𝒏𝒈, 𝑺𝒕𝒂𝒕𝒊𝒔𝒕𝒊𝒄𝒊𝒂𝒏")
-    st.text('Visit my page on Kaggle : https://www.kaggle.com/godwinnwalozie/code')
-    st.text ('Visit my Github page :https://github.com/godwinnwalozie')
+    st.text("""𝑾𝒊𝒕𝒉𝒐𝒖𝒕 𝒅𝒂𝒕𝒂 𝒚𝒐𝒖’𝒓𝒆 𝒋𝒖𝒔𝒕 𝒂𝒏𝒐𝒕𝒉𝒆𝒓 𝒑𝒆𝒓𝒔𝒐𝒏 𝒘𝒊𝒕𝒉 𝒂𝒏 𝒐𝒑𝒊𝒏𝒊𝒐𝒏.” 𝑬𝒅𝒘𝒂𝒓𝒅𝒔 𝑫𝒆𝒎𝒊𝒏𝒈, 𝑺𝒕𝒂𝒕𝒊𝒔𝒕𝒊𝒄𝒊𝒂𝒏 """)    
+ 
+    git='Visit my Git [link](https://github.com/godwinnwalozie)'
+    st.markdown(git,unsafe_allow_html=True)
+    
+    kaggle='Find me on Kaggle [link](https://www.kaggle.com/godwinnwalozie/code)'
+    st.markdown(kaggle,unsafe_allow_html=True)
