@@ -44,7 +44,7 @@ def main():
 
     # getting data from user
     #st.sidebar.image = Image.open("") 
-
+    master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
     gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
     age = st.sidebar.number_input('Input Age ', key = 'int',max_value  =100,min_value = 18) #st.sidebar.slider('Age',0,50,100)         
     hypertension = st.sidebar.selectbox('Are you hpertensive? ',("Yes", "No"))          
@@ -72,7 +72,7 @@ def main():
                             data provides relavant information about the patient.  \n **Data Source** :\
                             ***https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset*** ")
 
-    master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
+    
     
     #st.markdown("***")
     
@@ -148,6 +148,7 @@ if __name__ == "__main__":
       main()
       
 with st.container():
+        master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
         st.markdown("<h3 style='text-align:left; color: chocolate;'>Exploratory Data Analysis & Confusion Matrix Report</h3>", 
                     unsafe_allow_html=True)
         col1, col2 = st.columns(2)
