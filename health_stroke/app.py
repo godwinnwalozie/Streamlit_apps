@@ -1,3 +1,4 @@
+from sqlalchemy import values
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -24,6 +25,13 @@ div.stButton > button:hover {
 
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
+
+
+
+#warnings.filterwarnings(action='ignore', category=DataConversionWarning)
+
+df = None # global dataframe; if it is not uploaded, it is None.
+
 master_df= pd.read_csv("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/master_df.csv")
 
 def main():
@@ -38,21 +46,20 @@ def main():
     #st.sidebar.image = Image.open("") 
 
     gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
-    age = st.sidebar.number_input('Input Age (min is 25, max is 100)', key = 'int',max_value  =100,min_value = 25) #st.sidebar.slider('Age',0,50,100)         
-    hypertension = st.sidebar.selectbox('Are you hpertensive? 0 = No : 1= Yes',(1, 0))          
-    heart_disease = st.sidebar.selectbox('Any heart related disease ? 0 = No 1= Yes',(1, 0))                     
-    work_type = st.sidebar.selectbox('Work type ?', ("Private" ,"Self-employed","Children","Govt_job ","Never_worked"))             
-    Residence_type = st.sidebar.selectbox('Residence Type ?', ("Urban","Rural"))             
-    avg_glucose_level= st.sidebar.number_input('Average Gloucose Level', min_value= 0 )          
+    age = st.sidebar.number_input('Input Age ', key = 'int',max_value  =100,min_value = 18) #st.sidebar.slider('Age',0,50,100)         
+    hypertension = st.sidebar.selectbox('Are you hpertensive? ',("Yes", "No"))          
+    heart_disease = st.sidebar.selectbox('Any heart related disease ? ',("Yes", "No"))                      
+    #work_type = st.sidebar.selectbox('Work type ?', ("Private" ,"Self-employed","Children","Govt_job ","Never_worked"))             
+    Residence_type = st.sidebar.selectbox('Residencial Type ', ("Urban","Rural"))             
+    avg_glucose_level= st.sidebar.number_input('Average Gloucose Level', min_value= 0 , max_value=140)          
     bmi = st.sidebar.number_input('Enter your current BMI', min_value= 0, max_value= 100)              
-    smoking_status = st.sidebar.selectbox('Smoking status ?',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
+    smoking_status = st.sidebar.selectbox('Smoking status',("Never smoked" , "Unknown","formerly smoked","Smokes","Never_smoked")) 
     st.sidebar.markdown("***")
    
 
 
 
-    #st.title('Stroke Disease Prediction with Machine Learning')
-    st.markdown("<h2 style='text-align: left; color: grey;'>Stroke Disease Prediction with Machine Learning</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
     st.write(" **By Godwin Nwalozie : July 2022** ")
     st.markdown("***")
     image = Image.open("C:/Users/godwi/Pictures/strokeapp_headerimage.png") 
@@ -60,26 +67,19 @@ def main():
 
 
     with st.container():
-        st.info(" ###### This Machine Learning algorithm tries to predict whether a patient is likely to get stroke based on the feature\
+        st.info(" This Machine Learning algorithm tries to predict whether a patient is likely to get stroke based on the feature\
                             parameters like gender, age, various diseases, and smoking status. Each row in the \
-                            data provides relavant information about the patient \n SOURCE DATA :\
+                            data provides relavant information about the patient.  \n **Data Source** :\
                             ***https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset*** ")
 
 
-    if hypertension == 1:
-        hypertension = "Yes"
-    else:
-        "No"
-        
-    if heart_disease == 1:
-        heart_disease = "Yes"
-    else: "No"
+    
     #st.markdown("***")
     
     #st.write ('### Stroke Disease Prediction App')  
     with st.container():
     # Store inputs into dataframe
-        features = {"gender": gender,"age":age,"hypertension": hypertension, "heart_disease":heart_disease, "work_type" : work_type,"Residence_type" : Residence_type,
+        features = {"gender": gender,"age":age,"hypertension": hypertension, "heart_disease":heart_disease, "Residence_type" : Residence_type,
                 "avg_glucose_level" : avg_glucose_level, "bmi" : bmi,"smoking_status": smoking_status }
         show = pd.DataFrame(features, index= [0])
         show.age= show.age.astype('int')
@@ -92,7 +92,7 @@ def main():
         row_count = len(master_df)
         col_count_ini = len(master_df.columns)
         col_count = len(master_df.columns)-3
-        st.markdown("<h4 style='text-align: left; color: grey;'> Info about Dataset and Model </h1>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: left; color: chocolate;'> Dataset info and Deployed Estimator </h3>", unsafe_allow_html=True)
         
         
         col1, col2, col3,col4,col5 = st.columns(5)
@@ -100,7 +100,7 @@ def main():
         col2.metric("Model Prediction Accuracy", "93%", "<>")
         col3.metric("Number of rows trained", row_count, "<>")
         col4.metric("Initial No of columns", col_count_ini, "<>")
-        col5.metric("No of columns trained", col_count, "<>")
+        col5.metric("No of columns trained", col_count, "-")
     
 
         
@@ -115,7 +115,7 @@ def main():
     
     le = LabelEncoder()
     inputed.gender =le.fit_transform(inputed.gender)
-    inputed.work_type =le.fit_transform(inputed.work_type)
+    #inputed.work_type =le.fit_transform(inputed.work_type)
     inputed.Residence_type =le.fit_transform(inputed.Residence_type)
     inputed.smoking_status =le.fit_transform(inputed.smoking_status)
     inputed.hypertension =le.fit_transform(inputed.hypertension)
@@ -148,51 +148,87 @@ if __name__ == "__main__":
       main()
       
 with st.container():
-        st.markdown("<h5 style='text-align:left; color: black;'>Preprocessed Data Correlation & Confusion Matrix </h4>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align:left; color: chocolate;'>Exploratory Data Analysis & Confusion Matrix Report</h3>", 
+                    unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         
         with col1:
             
             #bmi age correlation
-            fig,ax = plt.subplots(figsize = (6,4))
+            fig,ax = plt.subplots(figsize = (6,3.6))
             sns.regplot(data = master_df, x= "bmi", y= "age",marker="x")
             ax.set(title ="Correlation between Age and BMI")
             st.write(fig)
             
             
-            st.markdown("***")
-            
+            #st.markdown("***")
+            fig, ax =plt.subplots(figsize = (6,2.6))
+            gender_stat = master_df.gender.value_counts().to_frame()
+            #disease_check.plot( kind = 'bar', color = ('teal',"blueviolet"), ax=ax)
+            sns.barplot(data = gender_stat, x = gender_stat.index, y = gender_stat['gender'] ,capsize = 0.05)
+            ax.set(title ="Gender Distribution", xlabel ='gender', ylabel ='count')
+            st.write(fig)
             
             # chart for confusion metrix
             conf_max_df= pd.read_csv ("C:/Users/godwi/GitHub/Streamlit_apps/health_stroke/conf_max_df.csv")
-            fig,ax = plt.subplots(figsize = (6,2.6))
+            fig,ax = plt.subplots(figsize = (6,2.4))
             sns.heatmap(conf_max_df/np.sum(conf_max_df) ,xticklabels = True, annot =True,fmt =".2%",
                         ax = ax,linewidths=0.2, linecolor='grey',)
             ax.set(title ="Confusion Matrix")
             st.write(fig)
             
-            st.markdown("***")
+            
+         
             
                 
         with col2:
             
             
-            # chart for feature correlation
-        
-            fig,ax =plt.subplots(figsize = (6,3.4))
-            feature_check =sns.heatmap(master_df.corr(), cmap = "Greens", annot = True,linewidths=0.2, linecolor='grey');
+            fig,ax =plt.subplots(figsize = (8,5))
+            feature_check =sns.heatmap(master_df.corr(), cmap = "Greens", annot = True,linewidths=0.3, linecolor='grey');
             ax.set(title ="Feature Correlation")
             st.write(fig)
-            st.markdown("***")
+            #st.markdown("***")
+            
+            
+            
+            
+            age_hyper = master_df.loc[:,["age","gender"]]
+            age_hyper['age_cat'] = age_hyper.age.apply(lambda x :  "0-2" if 0 <= x<2 else
+                                            "2-5" if 2<= x<= 5 else
+                                            "6-13" if 5< x< 13 else
+                                            "13-18" if 13<= x< 18 else
+                                            "18-30" if 18<= x< 30 else
+                                            "30-40" if 30<= x< 40 else
+                                            "40-50" if 40<= x< 50 else
+                                            "50-65" if 50<= x< 65 else
+                                            "65+" if x>= 65 else "not known")
+            
+            
+            pivot_age = age_hyper.pivot_table(index = 'age_cat', columns='gender', values="age", aggfunc= 'count')
+          
+            fig,ax = plt.subplots(figsize = (5,2.1))
+            pivot_age.plot(kind = 'bar', ax = ax)
+            ax.set(title ="Age Category - Distribution")
+            st.write(fig)
+            #st.markdown("***")
+           
+            
+            
+            
             
             # chart for heart diseaase
             disease_check = pd.crosstab(master_df.gender, master_df.heart_disease).rename({0: "No", 1:"Yes"}, axis = 1)
-            fig, ax =plt.subplots(figsize = (6,3))
+            fig, ax =plt.subplots(figsize = (6,2.4))
             #disease_check.plot( kind = 'bar', color = ('teal',"blueviolet"), ax=ax)
-            sns.heatmap(data = disease_check, annot = True, fmt ="2d", cmap = "Blues",linewidths=0.2, linecolor='grey' )
+            sns.heatmap(data = disease_check, annot = True, fmt ="2d", cmap = "Blues",linewidths=0.4, linecolor='grey' )
             ax.set( xlabel = 'Has Heart disease ?')
             ax.set(title ="Heart Disease by Gender")
             st.write(fig)
+            #st.markdown("***")
+            
+        
+
 
 
         st.write(' Thank you for visiting :-) '  )
