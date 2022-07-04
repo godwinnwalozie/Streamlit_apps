@@ -25,8 +25,8 @@ div.stButton > button:hover {
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
 
-#image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.jpg") 
-#st.image(image)
+image = Image.open(r"C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.jpg") 
+st.image(image)
 
 #warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
@@ -60,7 +60,7 @@ with st.container():
 
     # Store inputs into dataframe
     
-    master_df= pd.read_csv("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
+    master_df= pd.read_csv(r"C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
     
     st.sidebar.title(' Select Features')
     gender = st.sidebar.selectbox('Whats your gender?',('Male', 'Female'))
@@ -107,7 +107,7 @@ with st.container():
 
     inputed = pd.DataFrame(data = features, index = [0])
 
-    stroke_model = pickle.load(open('C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/estimator_pkl', 'rb'))      
+    stroke_model = pickle.load(open(r'C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/estimator_pkl', 'rb'))      
     
     le = LabelEncoder()
     inputed.gender =le.fit_transform(inputed.gender)
@@ -144,7 +144,7 @@ with st.container():
       #main()
       
 with st.container():
-        master_df= pd.read_csv("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
+        master_df= pd.read_csv(r"C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/master_df.csv")
         st.markdown("<h3 style='text-align:left; color: chocolate;'>Exploratory Data Analysis & Confusion Matrix Report</h3>", 
                     unsafe_allow_html=True)
         
