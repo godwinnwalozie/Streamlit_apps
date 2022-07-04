@@ -44,7 +44,7 @@ sns.set_theme(font_scale=0.7, style="darkgrid")
 st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
 st.write(" **By Godwin Nwalozie : July 2022** ")
 st.markdown("***")
-image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/strokeapp_headerimage.png") 
+image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.png") 
 st.image(image)
 
 
@@ -54,7 +54,6 @@ with st.container():
                             data provides relavant information about the patient.  \n **Data Source** :\
                             ***https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset*** ")
 
-    
     #st.markdown("***")
     
     #st.write ('### Stroke Disease Prediction App')  
