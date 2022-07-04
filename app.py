@@ -25,8 +25,8 @@ div.stButton > button:hover {
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
 
-image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.jpg") 
-st.image(image)
+#image = Image.open("C:/Users/godwi/GitHub/streamlit_app_stroke_precdict/data/header_image.jpg") 
+#st.image(image)
 
 #warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
