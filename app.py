@@ -200,10 +200,10 @@ stroke_model = pickle.load(open(trained_model, 'rb'))
 
 prediction = stroke_model.predict(inputed)
 if prediction [0] == 0:
-    prediction =  "Class [0] Low Risk" 
+    prediction =  "Class [0] LOW RISK" 
         #st.balloons()
 else:
-    prediction = "Class [1] Low Risk" 
+    prediction = "Class [1] HIGH RISK" 
     
 if st.button("click to make prediction"):
            
