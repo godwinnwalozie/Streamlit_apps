@@ -12,6 +12,8 @@ import os
 
 
 
+# css styling
+
 st.set_page_config(layout="wide")
 m = st.markdown("""
 <style>
@@ -68,8 +70,6 @@ st.markdown("""
 
 
 
-
-
 BACKGROUND_COLOR = 'white'
 COLOR = 'black'
 
@@ -103,12 +103,12 @@ def set_page_container_style(
             ''',
             unsafe_allow_html=True,
         )
+        
+        
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
 
 path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/data/")
-
-
 with st.container():
     
     #def file_selector(folder_path='/Users/godwi/GitHub/streamlit_stroke'):
