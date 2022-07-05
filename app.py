@@ -119,8 +119,8 @@ with st.container():
     
     #st.write(path)
       
-    header_image = (path +"/header_image.png")
-    #st.write(header_image)
+    header_image = (path +"\header_image.png")
+    st.write(header_image)
     image_header = Image.open(header_image)
     st.image(image_header)
     
