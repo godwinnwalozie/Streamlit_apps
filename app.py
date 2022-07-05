@@ -8,6 +8,8 @@ from PIL import Image
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 import os
+import time
+
 
 
 
@@ -83,25 +85,11 @@ st.markdown(hide_img_fs, unsafe_allow_html=True)
 
 
 
-# seting path
-path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/data/")
-with st.container():
-    
-    #def file_selector(folder_path='/Users/godwi/GitHub/streamlit_stroke'):
-        #filenames = os.listdir(folder_path)
-        #selected_filename = st.selectbox('Select a file', filenames)
-        #return os.path.join(folder_path, selected_filename)
 
-    #filename = file_selector()
-    #st.write('You selected `%s`' % filename)
-    
-    #st.write(path)
-      
-    header_image = (path +"/header_image.png")
-    #st.write(header_image)
-    image_header = Image.open(header_image)
-    st.image(image_header)
-    
+
+
+#image_header = Image.open("/data/header_image.png")
+#st.image(image_header)    
 
 st.write(" #### **Developed by : Godwin Nwalozie**")
 #st.markdown("<h1 style='text-align: left; color: black;'>Stroke Disease Prediction</h1>", unsafe_allow_html=True)
@@ -119,8 +107,10 @@ st.markdown("")
     #st.write ('### Stroke Disease Prediction App')
 
     # The dataset for the estimator
-dataframe = (path+ "/master_df.csv")
+dataframe = ("data//master_df.csv")
 master_df= pd.read_csv(dataframe)
+
+
 
     
     # Store inputs into dataframe
@@ -192,9 +182,14 @@ if prediction [0] == 0:
         #st.balloons()
 else:
     prediction = "Class [1] HIGH RISK" 
+
+@st.cache
+def ret_time():
+    time.sleep(5)
+    return time.time()
     
 if st.button("click to make prediction"):
-           
+        
     # Output prediction
     st.write(f" ##### The Prediction is a {prediction} ")
     #st.markdown("***")    
