@@ -8,7 +8,7 @@ from PIL import Image
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 import os
-path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/")
+path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/data/")
 
 
 
@@ -118,9 +118,9 @@ with st.container():
     #st.write('You selected `%s`' % filename)
     
     #st.write(path)
-    
-    
+      
     header_image = (path +"/header_image.png")
+    #st.write(header_image)
     image_header = Image.open(header_image)
     st.image(image_header)
     
