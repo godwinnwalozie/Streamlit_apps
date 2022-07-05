@@ -8,7 +8,7 @@ from PIL import Image
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import LabelEncoder
 import os
-path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/data/")
+
 
 
 
@@ -105,6 +105,8 @@ def set_page_container_style(
         )
 sns.set_theme(font_scale=0.7, style="darkgrid")
 
+
+path = os.path.dirname("/Users/godwi/GitHub/streamlit_stroke/data/")
 
 
 with st.container():
